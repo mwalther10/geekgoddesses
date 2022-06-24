@@ -15,6 +15,12 @@
 </script>
 
 <script>
+import Filter from "$lib/filter.svelte";
+import eatingHabitsIcon from "../lib/phosphoricons/fork-knife-fill.svg?raw";
+import warningIcon from "../lib/phosphoricons/warning-circle-fill.svg?raw";
+
+const eatingHabitOptions = [{label: "Vegetarian"}, {label: "Vegan"}, {label: "Halal"}];
+const allergyOptions= [{label: "Nuts"}, {label: "Gluten"}, {label: "Lactose"}];
 </script>
 
 <svelte:head>
@@ -22,8 +28,8 @@
 	<meta name="description" content="Fixed filters" />
 </svelte:head>
 
-<div class="w-96 h-96">
-	<picture>
-		<img src="rocket_cart_logo.svg" alt="Logo" />
-	</picture>
+<div class="flex flex-col text-dark w-full">
+	<div class="text-xl m-4 font-medium text-dark-grey"> Select filters</div>
+	<Filter title="Eating Habits" icon={eatingHabitsIcon} options={eatingHabitOptions} />
+	<Filter title="Allergies" icon={warningIcon} options={allergyOptions} />
 </div>

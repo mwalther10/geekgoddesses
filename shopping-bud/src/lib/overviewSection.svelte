@@ -7,7 +7,7 @@
 		}
 	];
     export let title;
-    import yogurtImage from "../../images/yoghurt.png";
+    import yogurtImage from "../images/yoghurt.png";
 
     const handleClick = () => {
         console.log("clicked");

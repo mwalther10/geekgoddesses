@@ -1,16 +1,15 @@
 <script context="module">
-import Separator from "$lib/separator.svelte";
-import ShoppingListOverview from "$lib/indexComponents/overviewSection.svelte";
-import OverviewSection from "$lib/indexComponents/overviewSection.svelte";
-
 	export const prerender = true;
+</script>
+
+<script>
+	import OverviewSection from '$lib/overviewSection.svelte';
 </script>
 
 <svelte:head>
 	<title>Home</title>
 	<meta name="description" content="ShoppingBud" />
 </svelte:head>
-
 <div class="flex flex-col font-medium text-dark">
 	<div class="text-xl  m-4">Welcome Nora!</div>
 	<div class="flex w-full bg-white">
@@ -25,45 +24,65 @@ import OverviewSection from "$lib/indexComponents/overviewSection.svelte";
 		/>
 	</div>
 	<div class=" flex flex-col  justify-center m-4 h-fit">
-		You are shopping at: 
-		<div class="flex bg-dark rounded-lg text-white border-1 items-center justify-center w-full text-center mt-2" >Kaufland Heidelberg-Weststadt</div>
+		You are shopping at:
+		<div
+			class="flex bg-dark rounded-lg text-white border-1 items-center justify-center w-full text-center mt-2"
+		>
+			Kaufland Heidelberg-Weststadt
+		</div>
 	</div>
 	<div>
-		<OverviewSection data={[{
-			title: 'Yoghurt',
-			image: '$images/yoghurt.jpeg',
-			brand: 'Milram'
-		}, {
-			title: 'Yoghurt',
-			image: '$images/yoghurt.jpeg',
-			brand: 'Milram'
-		}, {
-			title: 'Yoghurt',
-			image: '$images/yoghurt.jpeg',
-			brand: 'Milram'
-		}, {
-			title: 'Yoghurt',
-			image: '$images/yoghurt.jpeg',
-			brand: 'Milram'
-		}]} title="Current Shopping List" />
+		<OverviewSection
+			data={[
+				{
+					title: 'Yoghurt',
+					image: '$images/yoghurt.jpeg',
+					brand: 'Milram'
+				},
+				{
+					title: 'Yoghurt',
+					image: '$images/yoghurt.jpeg',
+					brand: 'Milram'
+				},
+				{
+					title: 'Yoghurt',
+					image: '$images/yoghurt.jpeg',
+					brand: 'Milram'
+				},
+				{
+					title: 'Yoghurt',
+					image: '$images/yoghurt.jpeg',
+					brand: 'Milram'
+				}
+			]}
+			title="Current Shopping List"
+		/>
 	</div>
 	<div class="mt-4">
-		<OverviewSection data={[{
-			title: 'Yoghurt',
-			image: '$images/yoghurt.jpeg',
-			brand: 'Milram'
-		}, {
-			title: 'Yoghurt',
-			image: '$images/yoghurt.jpeg',
-			brand: 'Milram'
-		}, {
-			title: 'Yoghurt',
-			image: '$images/yoghurt.jpeg',
-			brand: 'Milram'
-		}, {
-			title: 'Yoghurt',
-			image: '$images/yoghurt.jpeg',
-			brand: 'Milram'
-		}]} title="Leftovers in your Stock" />
+		<OverviewSection
+			data={[
+				{
+					title: 'Yoghurt',
+					image: '$images/yoghurt.jpeg',
+					brand: 'Milram'
+				},
+				{
+					title: 'Yoghurt',
+					image: '$images/yoghurt.jpeg',
+					brand: 'Milram'
+				},
+				{
+					title: 'Yoghurt',
+					image: '$images/yoghurt.jpeg',
+					brand: 'Milram'
+				},
+				{
+					title: 'Yoghurt',
+					image: '$images/yoghurt.jpeg',
+					brand: 'Milram'
+				}
+			]}
+			title="Leftovers in your Stock"
+		/>
 	</div>
 </div>
