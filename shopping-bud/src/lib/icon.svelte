@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
     export let data = ''
     export let viewBox = '0 0 256 256' // default value
     
@@ -10,7 +12,7 @@
     $: elements = data
       .replace(/<svg ([^>]*)>/, '')
       .replace('</svg>', '')
-/* stroke-dark-500 fill-dark-500 stroke-blue-500 fill-blue-500 fill-white stroke-white fill-main stroke-main fill-dark stroke-dark fill-warning stroke-warning fill-secondary stroke-secondary* */
+/* fill-red stroke-red fill-blue stroke-blue  fill-dark stroke-dark fill-yellow stroke-yellow fill-white stroke-white fill-dark-grey fill-light-grey* */
 </script>
   
 <svg
