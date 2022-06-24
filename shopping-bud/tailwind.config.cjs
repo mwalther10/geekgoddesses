@@ -1,5 +1,8 @@
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
+  daisyui: {
+    themes: ["light", "dark", "retro","lemonade","night"],
+  },
   theme: {
     extend: {
       colors: {
@@ -13,7 +16,8 @@ module.exports = {
         "dark-grey": '#596475',
         "light-grey": "#DCE0E5"
       },
+      
     }
   },
-  plugins: []
+  plugins: [ require("@tailwindcss/typography"),require("daisyui")]
 };
