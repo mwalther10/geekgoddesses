@@ -23,7 +23,7 @@
             plugins: {
                 legend: {
                     position: 'bottom',
-                    display: true
+                    display: false
                 }
             }
         }

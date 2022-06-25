@@ -17,7 +17,6 @@
 	};
 </script>
 
-
 <svelte:head>
 	<title>Shopping List</title>
 	<meta name="description" content="ShoppingBud" />
@@ -27,8 +26,8 @@
 		<Location />
 	{/if}
 	{#if $locationSelected}
-	<Stats data={$shoppingList} />
-		<div class=" m-4 text-dark flex items-center " on:click ={() => (setLocation() )}>
+		<Stats data={$shoppingList} />
+		<div class=" m-4 text-dark flex items-center " on:click={() => setLocation()}>
 			<Icon
 				data={locationIcon}
 				color={'dark'}
@@ -42,8 +41,9 @@
 		</div>
 		<BulletList />
 		{#if $shoppingList.length > 0}
-			<div class="m-4 text-dark text-lg">
+			<div class="mt-4 mx-4 text-dark text-lg font-bold">
 				Shopping List
+				<div class="divider mt-0" />
 				<List />
 			</div>
 		{/if}

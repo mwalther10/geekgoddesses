@@ -1,4 +1,7 @@
 <script>
+	import Icon from './icon.svelte';
+	import eurIcon from './phosphoricons/currency-eur-fill.svg?raw';
+
 	export let item = {
 		EF_single_score: 0.03504003687783169,
 		_id: '3478822005249',
@@ -48,31 +51,34 @@
 		stores_tags: ['magasins-u', 'carrefour-fr']
 	};
 
-	 import PieChart from './pieChart.svelte'
+	import PieChart from './pieChart.svelte';
 </script>
 
 <div>
-	<div class="flex ml-4 my-1">
-		<div class="flex flex-col justify-center items-center">
+	<div class="flex ml-1 my-1 justify-between">
+		<div class="flex flex-col justify-center items-center w-36">
 			<div class="stat-figure text-secondary">
 				<div class="avatar">
 					<div class="w-16 rounded-full">
-						<img src={item.image_url} alt={item.product_name} class="w-14 h-14" />
+						<img src={item.image_url} alt={item.product_name} class="w-16 h-16" />
 					</div>
 				</div>
 			</div>
-			<div class="stat-title text-dark">{item.product_name}</div>
-			<div class="stat-desc color-dark badge badge-accent badge-outline">{item.brands_tags}</div>
+			<div class="stat-title text-dark text-sm">{item.product_name}</div>
+			<div class="stat-desc color-dark badge badge-accent badge-outline text-sm">
+				{item.brands_tags}
+			</div>
 		</div>
-		<div class="grid grid-cols-2 gap-1">
-			<div>Nutriscore</div>
-			<div>{item.nutriscore_grade}</div>
-			<div>Price</div>
-			<div>{item.price}</div>
+		<div class="grid grid-cols-2 gap-y-0 gap-x-4 text-dark items-center justify-center  text-sm ">
+			<div class="">Nutriscore</div>
+			<div class="font-bold">{item.nutriscore_grade}</div>
+			<div class="flex items-center"><Icon data={eurIcon} size="8" color="dark" padding="1" /></div>
+			<div class="font-bold">
+				{item.price}
+			</div>
 		</div>
 
-		 <PieChart macros={[item.carbohydrates_100g, item.fat_100g, item.protein_100g]}></PieChart>
-
+		<PieChart macros={[item.carbohydrates_100g, item.fat_100g, item.protein_100g]} />
 	</div>
 	<div class="divider" />
 </div>
