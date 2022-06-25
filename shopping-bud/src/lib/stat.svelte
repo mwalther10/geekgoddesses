@@ -42,14 +42,13 @@ ef=(ef/data.length).toFixed(2)
   
     <div class="stat" >
       <div class="stat-figure text-secondary">
-        <Icon data={moneyIcon} color={'dark'} size="8" padding="1"  />
       </div>
-      <div class="stat-title">Budget</div>
-      <div class="badge badge-secondary">{price}€</div>
+      <div class="stat-title text-center">Budget</div>
+      <div class="badge badge-secondary text-center text-lg">{price}€</div>
     </div>
     
     <div class="stat">
-      <div class="stat-title">Micro</div>
+      <div class="stat-title text-center">Macro</div>
       <div class="">
       <PieChart macros={[carbs, fat, protein]}></PieChart>
     </div>
@@ -57,10 +56,9 @@ ef=(ef/data.length).toFixed(2)
     
     <div class="stat">
       <div class="stat-figure text-secondary">
-        <Icon data={globIcon} color={'dark'} size="8" padding="1"  />
       </div>
-      <div class="stat-title">EF Score</div>
-      <div class=" badge badge-secondary">{ef}</div>
+      <div class="stat-title text-center">EF Score</div>
+      <div class=" ml-3 badge badge-secondary text-lg">{ef}</div>
     </div>
     
   </div>
