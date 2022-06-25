@@ -7,6 +7,9 @@
 	import { location } from '../stores/location';
 	import Location from '../lib/location.svelte';
 	import { shoppingList } from '../stores/shopping-list-store';
+	import List from '$lib/list.svelte';
+
+	console.log($shoppingList);
 </script>
 
 <svelte:head>
@@ -19,6 +22,6 @@
 		<BulletList />
 	{/if}
 	{#if $shoppingList.length > 0}
-		<div>TEst</div>
+		<List />
 	{/if}
 </div>

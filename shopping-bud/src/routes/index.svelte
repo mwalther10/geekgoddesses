@@ -5,8 +5,7 @@
 <script>
 	import OverviewSection from '$lib/overviewSection.svelte';
 	import { onMount } from "svelte";
-    import { shoppingList, currentType, currentFilters,firstFetched } from '../stores/shopping-list-store.js';
-	let leftovers;
+    import { shoppingList,firstFetched, leftovers, fullData } from '../stores/shopping-list-store.js';
 
 	const customMountLeftOvers= async () => {
         return await fetch(("http://localhost:8000/" + 'sample?type=leftovers' ), {
@@ -19,7 +18,7 @@
         })
             .then((response) => response.json())
             .then((data) => {
-                leftovers=data;
+                $leftovers=data;
                 })
             };
 
@@ -34,24 +33,27 @@
         })
             .then((response) => response.json())
             .then((data) => {
-				if( !$firstFetched)
-                 {
-					shoppingList.set(data.filter((item)=>item.product_name=="Basil Packaging" || item.product_name=="Aceite de oliva" || item.product_name=="Parmigiano Reggiano"));
+					$shoppingList = data.filter((item)=>item.product_name=="Basil Packaging" || item.product_name=="Aceite de oliva" || item.product_name=="Parmigiano Reggiano");
+					$fullData = data;
 					$firstFetched=true;
-				}
-					else{
-						shoppingList.set(data);
 
-					}
                 })
             };
 	
     onMount( () => {
-        customMountLeftOvers();
-		customMountShoppingList();
+		if(!$firstFetched) {
+			customMountLeftOvers();
+			customMountShoppingList();
+		}
+		else{
+			console.log($shoppingList);
+			console.log($leftovers);
+
+		}
             });
 
 	const openShoppingList = () => {
+		console.log($shoppingList);
 		window.location.href = '/shopping-list';
 	};
 	const dummyRecipies = [
@@ -75,7 +77,7 @@
 </svelte:head>
 <div data-theme="cupcake" class="flex flex-col w-full font-medium  font-nunito ">
 	<div class="text-2xl  m-4  ">Welcome Nora!</div>
-{#if  shoppingList}
+{#if  $shoppingList.length > 0}
 	<div on:click={() => openShoppingList()}>
 		<OverviewSection
 			data={$shoppingList}
@@ -85,17 +87,17 @@
 	</div>
 	<div class="divider" />
 	{/if}
-	{#if leftovers}
+	{#if $leftovers.length>0}
 	<div class="mt-4">
 		<OverviewSection
-			data={leftovers}
+			data={$leftovers}
 			title="Leftovers"
-			subtitle={"You have " + leftovers.length + " items left"}
+			subtitle={"You have " + $leftovers.length + " items left"}
 		/>
 	</div>
 	<div class="divider" />
 	{/if}
-	<div class="">
+	<div class="mt-4">
 		<OverviewSection
 			data={dummyRecipies}
 			title="Recipe Recommendations"
