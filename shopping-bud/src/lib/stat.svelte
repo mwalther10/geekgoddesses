@@ -3,6 +3,8 @@ import globIcon from "../lib/phosphoricons/globe-hemisphere-east-light.svg?raw";
 import moneyIcon from "../lib/phosphoricons/money.svg?raw";
 import chartIcon from "../lib/phosphoricons/chart-pie-slice.svg?raw";
 import Icon from './icon.svelte';
+import PieChart from '../lib/pieChart_small.svelte';
+
 export let  price=0;
 export let  fat=0;
 export let protein=0
@@ -47,11 +49,10 @@ ef=(ef/data.length).toFixed(2)
     </div>
     
     <div class="stat">
-      <div class="stat-figure text-secondary">
-        <Icon data={chartIcon} color={'dark'} size="8" padding="1"  />
-      </div>
       <div class="stat-title">Micro</div>
-      <div class="stat">f:{fat}%-p:{protein}%-c:{carbs}%</div>
+      <div class="">
+      <PieChart macros={[carbs, fat, protein]}></PieChart>
+    </div>
     </div>
     
     <div class="stat">
