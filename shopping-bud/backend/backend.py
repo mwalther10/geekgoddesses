@@ -36,7 +36,7 @@ def extract_product_information(results, type):
         try:
             product["energy-kcal_100g"] = result["nutriments"]["energy-kcal_100g"]
         except KeyError:
-            if result["id"] == "4864394070560":
+            if result["_id"] == "4864394070560":
                 product["energy-kcal_100g"] = 22
             else:
                 product["energy-kcal_100g"] = np.random.uniform(0, 200, 1)[0]
@@ -47,21 +47,21 @@ def extract_product_information(results, type):
         try:
             product["fat_100g"] = result["nutriments"]["fat_100g"]
         except KeyError:
-            if result["id"] == "4864394070560":
+            if result["_id"] == "4864394070560":
                 product["fat_100g"] = 1
             else:
                 product["fat_100g"] = np.random.uniform(0, 25, 1)[0]
         try:
             product["fibre_100g"] = result["nutriments"]["fibre_100g"]
         except KeyError:
-            if result["id"] == "4864394070560":
+            if result["_id"] == "4864394070560":
                 product["fibre_100g"] = 5
             else:
                 product["fibre_100g"] = np.random.uniform(0, 25, 1)[0]
         try:
             product["protein_100g"] = result["nutriments"]["protein_100g"]
         except KeyError:
-            if result["id"] == "4864394070560":
+            if result["_id"] == "4864394070560":
                 product["protein_100g"] = 1
             else:
                 product["protein_100g"] = np.random.uniform(0, 40, 1)[0]
@@ -145,22 +145,7 @@ def extend_request(tags, i, req, contains, tag_type):
 def sample():
     type = request.args.get('type', default="simple_pasta", type=str)
     filters = request.args.get('filters', default="", type=str).split(",")
-
-    if type == "simple_pasta":
-        if "vegan" in filters and "gluten" in filters:
-            product_keys = ["4864394070560", "1230000068024", "8424536942122", "5016084170558", "8032804430822", "10022405"]
-            prices = [2.08, 2.49, 15.90, 2.49, 4.0, 0.75]
-        elif "vegan" in filters and "gluten" not in filters:
-            product_keys = ["4864394070560", "1230000068024", "8424536942122", "5016084170558", "8076809529433", "10022405"]
-            prices = [2.08, 2.49, 15.90, 2.49, 3.46, 0.75]
-        elif "vegan" not in filters and "gluten" in filters:
-            product_keys = ["4864394070560", "20717452", "8424536942122", "8003566000912", "8032804430822", "10022405"]
-            prices = [2.08, 1.99, 15.90, 3.49, 4.0, 0.75]
-        else:
-            product_keys = ["4864394070560", "20717452", "8424536942122", "8003566000912", "8076809529433", "10022405"]
-            prices = [2.08, 1.99, 15.90, 3.49, 3.46, 0.75]
-
-    elif type == "eco_pasta":
+    if type == "eco_pasta":
         if "vegan" in filters and "gluten" in filters:
             product_keys = ["4864394070560", "5057172477326", "3445020177351", "0074305066054", "3083681081022",
                             "0011110845320"]
@@ -209,6 +194,20 @@ def sample():
     elif type == "leftovers":
         product_keys = ["3478822005249", "5018374888303", "5411188112709", "20165079", "40895147"]
         prices = [2.0, 1.59, 1.90, 1.49, 0.99]
+
+    else:
+        if "vegan" in filters and "gluten" in filters:
+            product_keys = ["4864394070560", "1230000068024", "8424536942122", "5016084170558", "8032804430822", "10022405"]
+            prices = [2.08, 2.49, 15.90, 2.49, 4.0, 0.75]
+        elif "vegan" in filters and "gluten" not in filters:
+            product_keys = ["4864394070560", "1230000068024", "8424536942122", "5016084170558", "8076809529433", "10022405"]
+            prices = [2.08, 2.49, 15.90, 2.49, 3.46, 0.75]
+        elif "vegan" not in filters and "gluten" in filters:
+            product_keys = ["4864394070560", "20717452", "8424536942122", "8003566000912", "8032804430822", "10022405"]
+            prices = [2.08, 1.99, 15.90, 3.49, 4.0, 0.75]
+        else:
+            product_keys = ["4864394070560", "20717452", "8424536942122", "8003566000912", "8076809529433", "10022405"]
+            prices = [2.08, 1.99, 15.90, 3.49, 3.46, 0.75]
 
     results = [openfoodfacts.products.get_product(key) for key in product_keys]
     products = extract_product_information(results, type=type)
