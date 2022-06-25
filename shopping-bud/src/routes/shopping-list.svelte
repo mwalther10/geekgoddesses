@@ -10,11 +10,13 @@
 	import List from '$lib/list.svelte';
 	import Icon from '$lib/icon.svelte';
 	import locationIcon from '../lib/phosphoricons/map-pin-fill.svg?raw';
+	import Stats from '$lib/stat.svelte';
 
 	const setLocation = () => {
 		$locationSelected = false;
 	};
 </script>
+
 
 <svelte:head>
 	<title>Shopping List</title>
@@ -25,6 +27,7 @@
 		<Location />
 	{/if}
 	{#if $locationSelected}
+	<Stats />
 		<div class=" m-4 text-dark flex items-center " on:click ={() => (setLocation() )}>
 			<Icon
 				data={locationIcon}
