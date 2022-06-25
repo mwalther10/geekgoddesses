@@ -47,7 +47,8 @@
 		protein_100g: 16.55158983141465,
 		stores_tags: ['magasins-u', 'carrefour-fr']
 	};
-	// import PieChart from './pieChart.svelte'
+
+	 import PieChart from './pieChart.svelte'
 </script>
 
 <div>
@@ -69,7 +70,8 @@
 			<div>Price</div>
 			<div>{item.price}</div>
 		</div>
-		<!-- <PieChart macros={[item.carbohydrates_100g, item.fat_100g, item.protein_100g]}></PieChart> -->
+
+		 <PieChart macros={[item.carbohydrates_100g, item.fat_100g, item.protein_100g]}></PieChart>
 
 	</div>
 	<div class="divider" />
