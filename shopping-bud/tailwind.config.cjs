@@ -4,6 +4,9 @@ module.exports = {
     themes: ["light", "dark", "retro","lemonade","night"],
   },
   theme: {
+    fontFamily: {
+      sans: ['Apple Color Emoji', 'sans-serif'],
+    },
     extend: {
       colors: {
         "red": "#E4572E",
