@@ -3,19 +3,6 @@
 	export let icon;
 	export let title;
 	export let options;
-
-	
-	// $:disabled=check_disable(options);
-	// $:console.log(disabled)
-
-	// function check_disable(opts){
-	// 	opts.forEach(element => {
-	// 	if (element.value!=-1){
-	// 		return false;
-	// 	}
-	// });
-	// return true;
-	// }
     /* range-accent range-secondary range-primary * */
 
 </script>
