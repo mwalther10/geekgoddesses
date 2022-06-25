@@ -15,6 +15,10 @@ export let ef=0.2;
     padding-top: 0.1rem;
     padding-bottom: 0.1rem;
 	}
+  .stat-title
+  {
+    opacity: 1;
+  }
 </style>
 
 <div class="stats ">
@@ -24,7 +28,7 @@ export let ef=0.2;
         <Icon data={moneyIcon} color={'dark'} size="8" padding="1"  />
       </div>
       <div class="stat-title">Budget</div>
-      <div class="stat">{price}€</div>
+      <div class="badge badge-secondary">{price}€</div>
     </div>
     
     <div class="stat">
@@ -40,7 +44,7 @@ export let ef=0.2;
         <Icon data={globIcon} color={'dark'} size="8" padding="1"  />
       </div>
       <div class="stat-title">EF Score</div>
-      <div class="stat">{ef}</div>
+      <div class=" badge badge-secondary">{ef}</div>
     </div>
     
   </div>
