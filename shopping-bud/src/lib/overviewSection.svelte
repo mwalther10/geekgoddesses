@@ -1,13 +1,7 @@
 <script>
 	import Icon from './icon.svelte';
 
-	export let data = [
-		{
-			title: 'Yoghurt',
-			image: 'yoghurt.png',
-			brand: 'Milram'
-		}
-	];
+	export let data;
 	export let title;
 	export let subtitle;
 
@@ -22,19 +16,19 @@
 		{title}
 		<Icon data={arrowIcon} size="8" padding="1" color="dark" />
 	</div>
-	<div class="text-lg  ml-4 my-1 " on:click={handleClick}>{subtitle}</div>
+	<div class="text-l  ml-4 my-1 mb-3" on:click={handleClick}>{subtitle}</div>
 	<div class="flex overflow-x-scroll h-fit">
 		{#each data as { ...item }, i}
 			<div class="flex flex-col justify-center items-center mx-4 flex-none w-fit h-fit py-1 pb-4">
 				<div class="stat-figure text-secondary">
-					<div class="avatar">
-						<div class="w-16 rounded-full">
-							<img src={item.image} alt={item.title} class="w-14 h-14" />
+					<div class="avatar ">
+						<div class="w-16 rounded-full ring ring-primary">
+							<img src={item.image_url} alt={item.product_name} class="w-14 h-14" />
 						</div>
 					</div>
 				</div>
-				<div class="stat-title text-dark">{item.title}</div>
-				<div class="stat-desc color-dark badge badge-accent badge-outline">{item.brand}</div>
+				<div class="stat-title text-dark">{item.product_name}</div>
+				<div class="stat-desc color-dark badge badge-outline">{item.brands_tags[0]}</div>
 			</div>
 		{/each}
 	</div>
