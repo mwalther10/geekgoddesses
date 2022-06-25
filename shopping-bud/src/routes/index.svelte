@@ -67,10 +67,7 @@
 			customMountLeftOvers();
 			customMountShoppingList();
 			customMountFilteredData();
-		} else {
-			console.log($shoppingList);
-			console.log($leftovers);
-		}
+		} 
 	});
 
 	const dummyRecipies = [
