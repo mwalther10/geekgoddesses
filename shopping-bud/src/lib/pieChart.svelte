@@ -36,5 +36,5 @@
 </script>
 
 <div>
-    <canvas bind:this={portfolio} width={20} height={20}></canvas>
+    <canvas bind:this={portfolio} width={100} height={100}></canvas>
 </div>
