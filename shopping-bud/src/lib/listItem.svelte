@@ -66,7 +66,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="stat-title text-dark text-sm">{item.product_name}</div>
+			<div class="stat-title text-dark text-sm" <style>
+				.stat-title
+			 {
+			   opacity: 1;
+			 }
+			</style>>{item.product_name}</div>
 			<div class="stat-desc color-dark badge badge-accent badge-outline text-sm">
 				{item.brands_tags}
 			</div>

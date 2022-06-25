@@ -19,10 +19,11 @@ data.forEach(element => {
   ef=ef+element.EF_single_score;
   price=price+element.price;
 });
-fat=(fat/data.length).toFixed(1)
-protein=(protein/data.length).toFixed(1)
-carbs=(carbs/data.length).toFixed(1)
-ef=(ef/data.length).toFixed(2)
+fat=(fat/data.length).toFixed(1);
+protein=(protein/data.length).toFixed(1);
+carbs=(carbs/data.length).toFixed(1);
+ef=(ef/data.length).toFixed(2);
+price = price.toFixed(2);
 
 </script>
 <style>
