@@ -45,6 +45,27 @@ def extract_product_information(results, type):
         except KeyError:
             product["carbohydrates_100g"] = np.random.uniform(0, 50, 1)[0]
         try:
+            product["fat_100g"] = result["nutriments"]["fat_100g"]
+        except KeyError:
+            if result["id"] == "4864394070560":
+                product["fat_100g"] = 1
+            else:
+                product["fat_100g"] = np.random.uniform(0, 25, 1)[0]
+        try:
+            product["fibre_100g"] = result["nutriments"]["fibre_100g"]
+        except KeyError:
+            if result["id"] == "4864394070560":
+                product["fibre_100g"] = 5
+            else:
+                product["fibre_100g"] = np.random.uniform(0, 25, 1)[0]
+        try:
+            product["protein_100g"] = result["nutriments"]["protein_100g"]
+        except KeyError:
+            if result["id"] == "4864394070560":
+                product["protein_100g"] = 1
+            else:
+                product["protein_100g"] = np.random.uniform(0, 40, 1)[0]
+        try:
             product["EF_single_score"] = result["ecoscore_extended_data"]["impact"]["likeliest_impacts"][
                 "EF_single_score"]
         except KeyError:
@@ -138,19 +159,70 @@ def search():
 @app.route('/sample')
 def sample():
     type = request.args.get('type', default="simple_pasta", type=str)
+    filters = request.args.get('filters', default="", type=str).split(",")
 
     if type == "simple_pasta":
-        product_keys = ["4864394070560", "20717452", "8424536942122", "8003566000912", "8076809529433", "10022405"]
-        prices = [2.08, 1.99, 15.90, 3.49, 3.46, 0.75]
+        if "vegan" in filters and "gluten" in filters:
+            product_keys = ["4864394070560", "1230000068024", "8424536942122", "5016084170558", "8032804430822", "10022405"]
+            prices = [2.08, 2.49, 15.90, 2.49, 4.0, 0.75]
+        elif "vegan" in filters and "gluten" not in filters:
+            product_keys = ["4864394070560", "1230000068024", "8424536942122", "5016084170558", "8076809529433", "10022405"]
+            prices = [2.08, 2.49, 15.90, 2.49, 3.46, 0.75]
+        elif "vegan" not in filters and "gluten" in filters:
+            product_keys = ["4864394070560", "20717452", "8424536942122", "8003566000912", "8032804430822", "10022405"]
+            prices = [2.08, 1.99, 15.90, 3.49, 4.0, 0.75]
+        else:
+            product_keys = ["4864394070560", "20717452", "8424536942122", "8003566000912", "8076809529433", "10022405"]
+            prices = [2.08, 1.99, 15.90, 3.49, 3.46, 0.75]
+
     elif type == "eco_pasta":
-        product_keys = ["4864394070560", "5057172477326", "3445020177351", "8003566001001", "3083681081022",
-                        "0011110845320"]
-        prices = [2.08, 2.99, 17.90, 4.59, 4.09, 1.89]
+        if "vegan" in filters and "gluten" in filters:
+            product_keys = ["4864394070560", "5057172477326", "3445020177351", "0074305066054", "3083681081022",
+                            "0011110845320"]
+            prices = [2.08, 2.99, 17.90, 4.50, 4.09, 1.89]
+        elif "vegan" in filters and "gluten" not in filters:
+            product_keys = ["4864394070560", "5057172477326", "3445020177351", "0074305066054", "3083681081022",
+                            "0011110845320"]
+            prices = [2.08, 2.99, 17.90, 4.50, 4.09, 1.89]
+        elif "vegan" not in filters and "gluten" in filters:
+            product_keys = ["4864394070560", "5057172477326", "3445020177351", "8003566001001", "3083681081022",
+                            "0011110845320"]
+            prices = [2.08, 2.99, 17.90, 4.59, 4.09, 1.89]
+        else:
+            product_keys = ["4864394070560", "5057172477326", "3445020177351", "8003566001001", "3083681081022",
+                            "0011110845320"]
+            prices = [2.08, 2.99, 17.90, 4.59, 4.09, 1.89]
+
     elif type == "nutri_pasta":
-        product_keys = ["4864394070560", "20717483", "8006830111055", "0074305066054", "3083681080971", "10022405"]
-        prices = [2.08, 3.99, 19.90, 4.50, 6.35, 0.75]
+        if "vegan" in filters and "gluten" in filters:
+            product_keys = ["4864394070560", "5057172477326", "8006830111055", "0074305066054", "3083681080971", "10022405"]
+            prices = [2.08, 2.0, 19.90, 4.50, 6.35, 0.75]
+        elif "vegan" in filters and "gluten" not in filters:
+            product_keys = ["4864394070560", "5057172477326", "8006830111055", "0074305066054", "3083681080971", "10022405"]
+            prices = [2.08, 2.0, 19.90, 4.50, 6.35, 0.75]
+        elif "vegan" not in filters and "gluten" in filters:
+            product_keys = ["4864394070560", "20717483", "8006830111055", "0074305066054", "3083681080971", "10022405"]
+            prices = [2.08, 3.99, 19.90, 4.50, 6.35, 0.75]
+        else:
+            product_keys = ["4864394070560", "20717483", "8006830111055", "0074305066054", "3083681080971", "10022405"]
+            prices = [2.08, 3.99, 19.90, 4.50, 6.35, 0.75]
+
     elif type == "budget_pasta":
-        product_keys = ["4864394070560", "22130716", "4056489091738", "20365097", "20122591", "20164072"]
+        if "vegan" in filters and "gluten" in filters:
+            product_keys = ["4864394070560", "5057172477326", "4056489091738", "5016081312098", "20401108", "20164072"]
+            prices = [2.08, 2.0, 11.90, 2.49, 1.41, 0.49]
+        elif "vegan" in filters and "gluten" not in filters:
+            product_keys = ["4864394070560", "5057172477326", "4056489091738", "5016081312098", "20122591", "20164072"]
+            prices = [2.08, 2.0, 11.90, 2.49, 0.91, 0.49]
+        elif "vegan" not in filters and "gluten" in filters:
+            product_keys = ["4864394070560", "22130716", "4056489091738", "20365097", "20401108", "20164072"]
+            prices = [2.08, 1.49, 11.90, 1.49, 1.41, 0.49]
+        else:
+            product_keys = ["4864394070560", "22130716", "4056489091738", "20365097", "20122591", "20164072"]
+            prices = [2.08, 1.49, 11.90, 1.49, 0.91, 0.49]
+
+    elif type == "leftovers":
+        product_keys = ["3478822005249"]
         prices = [2.08, 1.49, 11.90, 1.49, 0.91, 0.49]
 
     results = [openfoodfacts.products.get_product(key) for key in product_keys]
