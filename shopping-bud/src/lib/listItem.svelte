@@ -47,11 +47,12 @@
 		protein_100g: 16.55158983141465,
 		stores_tags: ['magasins-u', 'carrefour-fr']
 	};
+	import PieChart from './pieChart.svelte'
 </script>
 
 <div>
 	<div class="flex ml-4 my-1">
-		<div class="flex flex-col">
+		<div class="flex flex-col justify-center items-center">
 			<div class="stat-figure text-secondary">
 				<div class="avatar">
 					<div class="w-16 rounded-full">
@@ -62,13 +63,14 @@
 			<div class="stat-title text-dark">{item.product_name}</div>
 			<div class="stat-desc color-dark badge badge-accent badge-outline">{item.brands_tags}</div>
 		</div>
-
-		<div class="flex flex-col ml-4 my-1">
-			<div class="stat-title text-dark">Nutriscore Grade</div>
-			<div class="stat-desc color-dark badge badge-accent badge-outline">
-				{item.nutriscore_grade}
-			</div>
+		<div class="grid grid-cols-2 gap-1">
+			<div>Nutriscore</div>
+			<div>{item.nutriscore_grade}</div>
+			<div>Price</div>
+			<div>{item.price}</div>
 		</div>
+		<PieChart macros={[item.carbohydrates_100g, item.fat_100g, item.protein_100g]}></PieChart>
+
 	</div>
 	<div class="divider" />
 </div>
