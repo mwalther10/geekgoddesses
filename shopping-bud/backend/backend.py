@@ -87,15 +87,15 @@ def index():
 def search():
     query = request.args.get('query', default="", type=str)
     category = request.args.get('category', default="", type=str)
-    allergens = request.args.get('allergens', default="", type=str).split(",")
-    labels = request.args.get('labels', default="", type=str).split(",")
-    packaging = request.args.get('packaging', default="", type=str).split(",")
+    allergens = request.args.get('allergens', default="", type=str) if not len(request.args.get('allergens', default="", type=str)) else request.args.get('allergens', default="", type=str).split(",")
+    labels = request.args.get('labels', default="", type=str) if not len(request.args.get('labels', default="", type=str)) else request.args.get('labels', default="", type=str).split(",")
+    packaging = request.args.get('packaging', default="", type=str) if not len(request.args.get('packaging', default="", type=str)) else request.args.get('packaging', default="", type=str).split(",")
     store = request.args.get('store', default="", type=str)
     brand = request.args.get('brand', default="", type=str)
     nutriscore = request.args.get('nutriscore', default="", type=str)
-    nutriments = request.args.get('nutriments', default="", type=str).split(",")
-    nutriments_op = request.args.get('nutriments_op', default="", type=str).split(",")
-    nutriments_val = request.args.get('nutriments_val', default="", type=str).split(",")
+    nutriments = request.args.get('nutriments', default="", type=str) if not len(request.args.get('nutriments', default="", type=str)) else request.args.get('nutriments', default="", type=str).split(",")
+    nutriments_op = request.args.get('nutriments_op', default="", type=str) if not len(request.args.get('nutriments_op', default="", type=str)) else request.args.get('nutriments_op', default="", type=str).split(",")
+    nutriments_val = request.args.get('nutriments_val', default="", type=str) if not len(request.args.get('nutriments_val', default="", type=str)) else request.args.get('nutriments_val', default="", type=str).split(",")
 
     req = {
         "search_terms": query,
@@ -112,48 +112,33 @@ def search():
                      }
 
     i = 1
-    if len(allergens) > 1 or len(allergens[0]):
-        for allergen in allergens:
-            req = req | {"tagtype_{}".format(i): "allergens",
-                         "tag_contains_{}".format(i): "does_not_contain",
-                         "tag_{}".format(i): allergen,
-                         }
-            i += 1
-    if len(labels) > 1 or len(labels[0]):
-        for label in labels:
-            req = req | {"tagtype_{}".format(i): "labels",
-                         "tag_contains_{}".format(i): "contains",
-                         "tag_{}".format(i): label,
-                         }
-            i += 1
-    if len(packaging) > 1 or len(packaging[0]):
-        for pack in packaging:
-            req = req | {"tagtype_{}".format(i): "packaging",
-                         "tag_contains_{}".format(i): "does_not_contain",
-                         "tag_{}".format(i): pack,
-                         }
-            i += 1
-    if len(store):
-        req = req | {"tagtype_{}".format(i): "stores",
-                     "tag_contains_{}".format(i): "contains",
-                     "tag_{}".format(i): store,
-                     }
-        i += 1
-    if len(brand):
-        req = req | {"tagtype_{}".format(i): "brands",
-                     "tag_contains_{}".format(i): "contains",
-                     "tag_{}".format(i): brand,
-                     }
-        i += 1
-    if len(nutriscore):
-        req = req | {"tagtype_{}".format(i): "nutriscore_grade",
-                     "tag_contains_{}".format(i): "contains",
-                     "tag_{}".format(i): nutriscore,
-                     }
-        i += 1
+    i, req = extend_request(allergens, i, req, "does_not_contain", "allergens")
+    i, req = extend_request(labels, i, req, "contains", "labels")
+    i, req = extend_request(packaging, i, req, "does_not_contain", "packaging")
+    i, req = extend_request(store, i, req, "contains", "stores")
+    i, req = extend_request(brand, i, req, "contains", "brands")
+    i, req = extend_request(nutriscore, i, req, "contains", "nutriscore_grade")
 
+    print(req)
     results = openfoodfacts.products.advanced_search(req)
-    return jsonify(extract_product_information(results))
+    return jsonify(extract_product_information(results, ""))
+
+
+def extend_request(tags, i, req, contains, tag_type):
+    if len(tags) and not isinstance(tags, str):
+        for tag in tags:
+            req = req | {"tagtype_{}".format(i): tag_type,
+                         "tag_contains_{}".format(i): contains,
+                         "tag_{}".format(i): tag,
+                         }
+            i += 1
+    elif len(tags) and isinstance(tags, str):
+        req = req | {"tagtype_{}".format(i): tag_type,
+                     "tag_contains_{}".format(i): contains,
+                     "tag_{}".format(i): tags,
+                     }
+        i += 1
+    return i, req
 
 
 @app.route('/sample')
