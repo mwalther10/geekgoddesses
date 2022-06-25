@@ -61,10 +61,9 @@
 	</div>
 	<Filter title="Eating Habits" icon={eatingHabitsIcon} options={$filters.eatingHabbit} />
 	<Filter title="Allergies" icon={warningIcon} options={$filters.allergy} />
-	
-	<a href="/shopping-list">
+	<a href="/shopping-list" class=" flex w-full justify-center">
 		<button
-		class="self-center rounded-full w-11/12 py-2  mt-4 bg-yellow text-white cursor-pointer"
+		class="rounded-full w-11/12 py-2  mt-4 bg-primary text-white cursor-pointer"
 		on:click={() => applyFilters()}>Apply filters</button
 	>
 	</a>
