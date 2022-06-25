@@ -9,7 +9,7 @@ CORS(app)
 
 def extract_product_information(results, type):
     products = []
-    keys = ["_id", "product_name", "image_url", "allergens_tags", "labels_tags", "packaging_tags", "categories_tags"]
+    keys = ["_id", "product_name", "image_url", "allergens_tags", "labels_tags", "categories_tags"]
     if "products" in results:
         results = results["products"]
     else:
@@ -21,6 +21,10 @@ def extract_product_information(results, type):
                 product[key] = result[key]
             except KeyError:
                 product[key] = -1
+        try:
+            product["packaging_tags"] = result["packaging_tags"] if len(result["packaging_tags"]) else ["en:plastic"]
+        except KeyError:
+            product["packaging_tags"] = ["en:plastic"]
         try:
             product["nutriscore_grade"] = result["nutriscore_grade"]
         except KeyError:
