@@ -5,6 +5,7 @@
 
 	import locationIcon from '../phosphoricons/map-pin-fill.svg?raw';
 	import funnelIcon from '../phosphoricons/funnel-fill.svg?raw';
+	import homeIcon from '../phosphoricons/house-fill.svg?raw';
 	import sliderIcon from '../phosphoricons/sliders-horizontal-fill.svg?raw';
 	import settingIcon from '../phosphoricons/gear-fill.svg?raw';
 </script>
@@ -23,7 +24,7 @@
 			<label tabindex="0" class="btn btn-circle btn btn-primary m-1">
 				<a sveltekit:prefetch href="/"
 					><Icon
-						data={locationIcon}
+						data={homeIcon}
 						color={$page.url.pathname === '/' ? 'dark-blue' : 'light-blue'}
 						size="8"
 						padding="1"
