@@ -44,7 +44,7 @@
 			</div>
 			{#if bullets.length > 0}
 				<button
-					class="self-center rounded-full w-11/12 py-2  mt-4 bg-yellow text-white cursor-pointer"
+					class="self-center rounded-full w-11/12 py-2  mt-4 bg-primary text-white cursor-pointer"
 					on:click={() => transformBulletList(bullets)}>Transform Bullet List</button
 				>
 			{/if}

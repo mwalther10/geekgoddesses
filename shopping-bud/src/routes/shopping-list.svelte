@@ -17,6 +17,7 @@
 	};
 </script>
 
+
 <svelte:head>
 	<title>Shopping List</title>
 	<meta name="description" content="ShoppingBud" />

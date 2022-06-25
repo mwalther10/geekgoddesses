@@ -1,6 +1,7 @@
 <script>
 	import Icon from './icon.svelte';
 	import eurIcon from './phosphoricons/currency-eur-fill.svg?raw';
+	import packageIcone from './phosphoricons/trash.svg?raw';
 
 	export let item = {
 		EF_single_score: 0.03504003687783169,
@@ -50,6 +51,7 @@
 		protein_100g: 16.55158983141465,
 		stores_tags: ['magasins-u', 'carrefour-fr']
 	};
+	console.log(item)
 
 	import PieChart from './pieChart.svelte';
 </script>
@@ -59,29 +61,46 @@
 		<div class="flex flex-col justify-center items-center w-36 border-r-2">
 			<div class="stat-figure text-secondary">
 				<div class="avatar">
-					<div class="w-16 rounded-full">
+					<div class="w-16 rounded-full ring ring-primary">
 						<img src={item.image_url} alt={item.product_name} class="w-16 h-16" />
 					</div>
 				</div>
 			</div>
-			<div class="stat-title text-dark text-sm">{item.product_name}</div>
+			<div class="stat-title text-dark text-sm" style="opacity:1;">{item.product_name}</div>
 			<div class="stat-desc color-dark badge badge-accent badge-outline text-sm">
 				{item.brands_tags}
 			</div>
 		</div>
-		<div class="flex flex-col text-dark items-center justify-around  text-lg ">
-			<div class="flex justify-center items-center">
-				<div class="pr-1">Nutriscore</div>
-				<div class="font-bold">{item.nutriscore_grade}</div>
+		<div class="flex flex-col text-dark  justify-around  ">
+			<div class="flex  items-center">
+				<div class="pr-1 text-sm">Nutriscore</div>
+				<div class="font-bold">{item.nutriscore_grade.toUpperCase()}</div>
 			</div>
-			<div class="flex justify-center items-center">
+			<div class="flex  items-center">
+				<div class="flex items-center">
+					<div class="flex items-center">
+						<Icon data={packageIcone} size="6" color="dark" padding="1" />
+					</div><div class= "badge badge-secondary"> {item.packaging_tags[0].replace("en:","").replace("-packaging","")}</div>
+				</div>
+			</div>
+			<div class="flex  items-center">
 				<div class="flex items-center">
 					<Icon data={eurIcon} size="6" color="dark" padding="1" />
 				</div>
-				<div class="font-bold">
+				<div class="font-bold text-sm">
 					{item.price}
 				</div>
 			</div>
+			<div class="flex items-center">
+				<div class="flex items-center">
+				{#if item.categories_tags.includes("en:plant-based-foods") && item.categories_tags.includes("en:vegetables-based-foods")}
+				<div class="badge badge-primary">vegan</div>
+				{:else if item.categories_tags.includes("en:vegetables-based-foods")}
+				<div class="badge badge-primary">vegeterian</div>
+				{/if}
+				</div>
+			</div>
+			
 		</div>
 		<div class="flex justify-center items-center">
 			<PieChart macros={[item.carbohydrates_100g, item.fat_100g, item.protein_100g]} />

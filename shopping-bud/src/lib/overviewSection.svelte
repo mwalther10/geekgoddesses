@@ -11,6 +11,7 @@
 	};
 </script>
 
+
 <div>
 	<div class=" flex items-center text-lg font-bold  ml-4 my-1 text-dark " on:click={handleClick}>
 		{title}
@@ -27,7 +28,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="stat-title text-dark">{item.product_name}</div>
+				<div class="stat-title text-dark" style="opacity:1;">{item.product_name}</div>
 				<div class="stat-desc color-dark badge badge-outline">{item.brands_tags[0]}</div>
 			</div>
 		{/each}
