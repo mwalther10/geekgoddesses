@@ -4,6 +4,10 @@
 
 <script>
 	import OverviewSection from '$lib/overviewSection.svelte';
+
+	const openShoppingList = () => {
+		window.location.href = '/shopping-list';
+	};
 </script>
 
 <svelte:head>
@@ -38,7 +42,8 @@
 		  </div>
 		</h6>
 	<div>
-		<OverviewSection
+		<div on:click={() => openShoppingList()}>
+			<OverviewSection
 			data={[
 				{
 					title: 'Yoghurt',
@@ -63,6 +68,8 @@
 			]}
 			title="Current Shopping List"
 		/>
+		</div>
+
 	</div>
 	<div class="divider"></div> 
 
