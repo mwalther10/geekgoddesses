@@ -5,7 +5,7 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      sans: ['Apple Color Emoji', 'sans-serif'],
+      'nunito': ['nunito', 'sans-serif'],
     },
     extend: {
       colors: {

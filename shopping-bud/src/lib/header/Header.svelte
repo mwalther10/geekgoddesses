@@ -1,7 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import Icon from '$lib/icon.svelte';
-	import noraImage from '../../images/nora.jpeg';
+	import noraImage from '../../images/nora2.webp';
 
 	import locationIcon from '../phosphoricons/map-pin-fill.svg?raw';
 	import funnelIcon from '../phosphoricons/funnel-fill.svg?raw';
@@ -10,60 +10,8 @@
 </script>
 
 <header data-theme="lemonade">
-	<!-- <nav
-		class="flex items-center justify-between h-16 bg-dark  text-xl xl:text-2xl w-full font-bold"
-	>
-		<picture class="flex items-center w-20">
-			<img src="logo6.svg" alt="logo" />
-		</picture>
-		<ul class="flex items-center justify-between w-1/2 mx-4">
-			<li>
-				<a sveltekit:prefetch href="/"
-					><Icon
-						data={locationIcon}
-						color={$page.url.pathname === '/' ? 'red' : 'white'}
-						size="10"
-						padding="1"
-						additionalStyle="cursor-pointer"
-					/></a
-				>
-			</li>
+	<link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
 
-			<li>
-				<a sveltekit:prefetch href="/filters"
-					><Icon
-						data={funnelIcon}
-						color={$page.url.pathname === '/filters' ? 'red' : 'white'}
-						size="10"
-						padding="1"
-						additionalStyle="cursor-pointer"
-					/></a
-				>
-			</li>
-			<li>
-				<a sveltekit:prefetch href="/preferences"
-					><Icon
-						data={sliderIcon}
-						color={$page.url.pathname === '/preferences' ? 'red' : 'white'}
-						size="10"
-						padding="1"
-						additionalStyle="cursor-pointer"
-					/></a
-				>
-			</li>
-			<li>
-				<a sveltekit:prefetch href="/settings"
-					><Icon
-						data={settingIcon}
-						color={$page.url.pathname === '/settings' ? 'red' : 'white'}
-						size="10"
-						padding="1"
-						additionalStyle="cursor-pointer"
-					/></a
-				>
-			</li>
-		</ul>
-	</nav> -->
 	<div class="navbar bg-base-100 border-b-2 border-dark">
 		<div class="flex-1">
 			<picture class="flex items-center w-20">
