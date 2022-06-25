@@ -22,7 +22,7 @@
 			<div class="flex flex-col justify-center items-center mx-4 flex-none w-fit h-fit py-1 pb-4">
 				<div class="stat-figure text-secondary">
 					<div class="avatar ">
-						<div class="w-16 rounded-full ring ring-primary">
+						<div class="w-16 rounded-full ring ring-primary" >
 							<img src={item.image_url} alt={item.product_name} class="w-14 h-14" />
 						</div>
 					</div>

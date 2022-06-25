@@ -8,6 +8,8 @@
 	import homeIcon from '../phosphoricons/house-fill.svg?raw';
 	import sliderIcon from '../phosphoricons/sliders-horizontal-fill.svg?raw';
 	import settingIcon from '../phosphoricons/gear-fill.svg?raw';
+	import listIcon from '../phosphoricons/list-bullets.svg?raw';
+
 </script>
 
 <header data-theme="cupcake">
@@ -44,7 +46,17 @@
 					/></a
 				>
 			</label>
-
+			<label tabindex="0" class="btn btn-circle btn btn-primary m-1">
+				<a sveltekit:prefetch href="/list"
+					><Icon
+						data={listIcon}
+						color={$page.url.pathname === '/list' ? 'dark-blue' : 'light-blue'}
+						size="8"
+						padding="1"
+						additionalStyle="cursor-pointer"
+					/></a
+				>
+			</label>
 			<div class="dropdown dropdown-end">
 				<!-- svelte-ignore a11y-label-has-associated-control -->
 				<label tabindex="0" class="btn btn-ghost btn-circle avatar">
