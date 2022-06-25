@@ -9,7 +9,8 @@
 		shoppingList,
 		firstFetched,
 		leftovers,
-		fullData
+		fullData,
+		filteredList
 	} from '../stores/shopping-list-store.js';
 
 	const customMountLeftOvers = async () => {
@@ -24,6 +25,20 @@
 			.then((data) => {
 				$leftovers = data;
 			});
+	};
+
+	const customMountFilteredData = async () => {
+		return await fetch('http://localhost:8000/' + 'sample?type=nutri_pasta&filters=vegan,gluten', {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: 'GET'
+		})
+				.then((response) => response.json())
+				.then((data) => {
+					$filteredList = data;
+				});
 	};
 
 	const customMountShoppingList = async () => {
@@ -51,6 +66,7 @@
 		if (!$firstFetched) {
 			customMountLeftOvers();
 			customMountShoppingList();
+			customMountFilteredData();
 		} else {
 			console.log($shoppingList);
 			console.log($leftovers);
