@@ -19,8 +19,8 @@ module.exports = {
         "white": "#FEFFFE",
         "dark-grey": '#596475',
         "light-grey": "#DCE0E5",
-        "pink":"#D0C1D6",
-        "light-blue":"#4591b4"
+        "pink":"#67a7c5",
+        "light-blue":"#377490"
       }
     }
   },

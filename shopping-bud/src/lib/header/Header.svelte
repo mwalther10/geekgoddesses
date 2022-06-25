@@ -12,7 +12,7 @@
 <header data-theme="cupcake">
 	<link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
 
-	<div class="navbar border-b-2 border-dark  bg-100 text-neutral-content ">
+	<div class="navbar border-b-2 border-dark bg-100 text-neutral-content ">
 		<div class="flex-1">
 			<picture class="flex items-center w-20">
 				<img src="logo6.svg" alt="logo" />
@@ -20,11 +20,11 @@
 		</div>
 		<div class="flex-none">
 			<!-- svelte-ignore a11y-label-has-associated-control -->
-			<label tabindex="0" class="btn btn-circle btn btn-secondary m-1">
+			<label tabindex="0" class="btn btn-circle btn btn-primary m-1">
 				<a sveltekit:prefetch href="/"
 					><Icon
 						data={locationIcon}
-						color={$page.url.pathname === '/' ? 'light-blue' : 'pink'}
+						color={$page.url.pathname === '/' ? 'dark-blue' : 'light-blue'}
 						size="8"
 						padding="1"
 						additionalStyle="cursor-pointer"
@@ -32,11 +32,11 @@
 				>
 			</label>
 			<!-- svelte-ignore a11y-label-has-associated-control -->
-			<label tabindex="0" class="btn btn-circle btn btn-secondary m-1">
+			<label tabindex="0" class="btn btn-circle btn btn-primary m-1">
 				<a sveltekit:prefetch href="/filters"
 					><Icon
 						data={funnelIcon}
-						color={$page.url.pathname === '/filters' ? 'light-blue' : 'pink'}
+						color={$page.url.pathname === '/filters' ? 'dark-blue' : 'light-blue'}
 						size="8"
 						padding="1"
 						additionalStyle="cursor-pointer"
