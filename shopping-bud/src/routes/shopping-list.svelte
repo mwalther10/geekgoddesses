@@ -6,10 +6,14 @@
 	import BulletList from '$lib/bullet-list.svelte';
 	import { location } from '../stores/location';
 	import Location from '../lib/location.svelte';
-	import { shoppingList } from '../stores/shopping-list-store';
+	import { shoppingList, locationSelected } from '../stores/shopping-list-store';
 	import List from '$lib/list.svelte';
+	import Icon from '$lib/icon.svelte';
+	import locationIcon from '../lib/phosphoricons/map-pin-fill.svg?raw';
 
-	console.log($shoppingList);
+	const setLocation = () => {
+		$locationSelected = false;
+	};
 </script>
 
 <svelte:head>
@@ -17,11 +21,28 @@
 	<meta name="description" content="ShoppingBud" />
 </svelte:head>
 <div data-theme="cupcake" class="flex flex-col font-medium font-nunito w-full ">
-	<Location />
-	{#if $location != ''}
-		<BulletList />
+	{#if !$locationSelected}
+		<Location />
 	{/if}
-	{#if $shoppingList.length > 0}
-		<List />
+	{#if $locationSelected}
+		<div class=" m-4 text-dark flex items-center " on:click ={() => (setLocation() )}>
+			<Icon
+				data={locationIcon}
+				color={'dark'}
+				size="8"
+				padding="1"
+				additionalStyle="cursor-pointer"
+			/>
+			<span class="font-bold">
+				{$location}
+			</span>
+		</div>
+		<BulletList />
+		{#if $shoppingList.length > 0}
+			<div class="m-4 text-dark text-lg">
+				Shopping List
+				<List />
+			</div>
+		{/if}
 	{/if}
 </div>

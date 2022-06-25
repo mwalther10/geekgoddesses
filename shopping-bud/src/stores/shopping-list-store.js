@@ -6,3 +6,5 @@ export const fullData = writable([]);
 export const currentType=writable("leftovers");
 export const currentFilters=writable("");
 export const firstFetched=writable(false);
+export const displayFullData = writable(false);
+export const locationSelected = writable(false);

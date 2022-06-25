@@ -3,11 +3,8 @@
 	import Icon from '$lib/icon.svelte';
 	import noraImage from '../../images/nora2.webp';
 
-	import locationIcon from '../phosphoricons/map-pin-fill.svg?raw';
 	import funnelIcon from '../phosphoricons/funnel-fill.svg?raw';
 	import homeIcon from '../phosphoricons/house-fill.svg?raw';
-	import sliderIcon from '../phosphoricons/sliders-horizontal-fill.svg?raw';
-	import settingIcon from '../phosphoricons/gear-fill.svg?raw';
 	import listIcon from '../phosphoricons/list-bullets.svg?raw';
 
 </script>
@@ -46,11 +43,12 @@
 					/></a
 				>
 			</label>
+			<!-- svelte-ignore a11y-label-has-associated-control -->
 			<label tabindex="0" class="btn btn-circle btn btn-primary m-1">
-				<a sveltekit:prefetch href="/list"
+				<a sveltekit:prefetch href="/shopping-list"
 					><Icon
 						data={listIcon}
-						color={$page.url.pathname === '/list' ? 'dark-blue' : 'light-blue'}
+						color={$page.url.pathname === '/shopping-list' ? 'dark-blue' : 'light-blue'}
 						size="8"
 						padding="1"
 						additionalStyle="cursor-pointer"
