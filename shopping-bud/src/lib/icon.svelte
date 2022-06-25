@@ -12,14 +12,14 @@
     $: elements = data
       .replace(/<svg ([^>]*)>/, '')
       .replace('</svg>', '')
-/* fill-red stroke-red fill-blue stroke-blue  fill-dark stroke-dark fill-yellow stroke-yellow fill-white stroke-white fill-dark-grey fill-light-grey* */
+/* fill-red stroke-red fill-blue stroke-blue fill-pink fill-light-blue  fill-dark stroke-dark fill-yellow stroke-yellow fill-white stroke-white fill-dark-grey fill-light-grey* */
 </script>
   
 <svg
-xmlns="http://www.w3.org/2000/svg"
-{viewBox}
-class={classdata}
-{...$$restProps}
->
-{@html elements}
-</svg>
+  xmlns="http://www.w3.org/2000/svg"
+  {viewBox}
+  class={classdata}
+  {...$$restProps}
+  >
+  {@html elements}
+  </svg>

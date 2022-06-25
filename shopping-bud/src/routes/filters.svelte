@@ -15,12 +15,25 @@
 </script>
 
 <script>
-import Filter from "$lib/filter.svelte";
-import eatingHabitsIcon from "../lib/phosphoricons/fork-knife-fill.svg?raw";
-import warningIcon from "../lib/phosphoricons/warning-circle-fill.svg?raw";
+	import Filter from '$lib/filter.svelte';
+	import Preference from '$lib/preference.svelte';
+	import eatingHabitsIcon from '../lib/phosphoricons/fork-knife.svg?raw';
+	import warningIcon from '../lib/phosphoricons/warning-circle.svg?raw';
+	import globIcon from '../lib/phosphoricons/globe-hemisphere-east-light.svg?raw';
+	import moneyIcon from '../lib/phosphoricons/money.svg?raw';
+	import chartIcon from '../lib/phosphoricons/chart-pie-slice.svg?raw';
+	import filters from '../stores/filters';
+	import { filteredList, shoppingList } from '../stores/shopping-list-store.js';
 
-const eatingHabitOptions = [{label: "Vegetarian"}, {label: "Vegan"}, {label: "Halal"}];
-const allergyOptions= [{label: "Nuts"}, {label: "Gluten"}, {label: "Lactose"}];
+	// const eatingHabitOptions = [{label: "Vegetarian",checked:false}, {label: "Vegan",checked:false}, {label: "Halal",checked:false}];
+	// const allergyOptions= [{label: "Nuts",checked:false}, {label: "Gluten",checked:false}, {label: "Lactose",checked:false}];
+	// const neutOptions= [{label: "Fat",value:-1, color:"primary", min:0,max:100,steps:1, unit:"%"}, {label: "Protein",value:-1,color:
+	// "secondary",min:0,max:100,steps:1, unit:"%"}, {label: "Carbs",value:-1, color:"accent",min:0,max:100,steps:1, unit:"%"}];
+	// const moneyOptions= [{label: "Total Budget",value:-1, color:"accent",min:0,max:500,steps:0.5, unit:"€"}];
+	// const envOptions= [{label: "Total EF Score",value:-1, color:"primary",min:0,max:1,steps:0.1, unit:""}];
+	const applyFilters = () => {
+		$shoppingList = $filteredList;
+	};
 </script>
 
 <svelte:head>
@@ -28,8 +41,31 @@ const allergyOptions= [{label: "Nuts"}, {label: "Gluten"}, {label: "Lactose"}];
 	<meta name="description" content="Fixed filters" />
 </svelte:head>
 
-<div class="flex flex-col text-dark w-full">
-	<div class="text-xl m-4 font-medium text-dark-grey"> Select filters</div>
-	<Filter title="Eating Habits" icon={eatingHabitsIcon} options={eatingHabitOptions} />
-	<Filter title="Allergies" icon={warningIcon} options={allergyOptions} />
+<div data-theme="cupcake" class="flex flex-col text-dark w-full font-nunito">
+	<div
+		class="text-xl m-3 text-center font-medium  badge-secondary gap-2"
+		style="border-radius: 5px;"
+	>
+		Prefrences
+	</div>
+	<Preference title="Micro-nutrients" icon={chartIcon} options={$filters.neutriation} />
+	<Preference title="Budget" icon={moneyIcon} options={$filters.budget} />
+	<Preference title="Environmental Footprint (EF)" icon={globIcon} options={$filters.enviroment} />
+	<div class="divider" />
+
+	<div
+		class="text-xl m-3 text-center font-medium  badge-secondary gap-2"
+		style="border-radius: 5px;"
+	>
+		Filters
+	</div>
+	<Filter title="Eating Habits" icon={eatingHabitsIcon} options={$filters.eatingHabbit} />
+	<Filter title="Allergies" icon={warningIcon} options={$filters.allergy} />
+	
+	<a href="/shopping-list">
+		<button
+		class="self-center rounded-full w-11/12 py-2  mt-4 bg-yellow text-white cursor-pointer"
+		on:click={() => applyFilters()}>Apply filters</button
+	>
+	</a>
 </div>

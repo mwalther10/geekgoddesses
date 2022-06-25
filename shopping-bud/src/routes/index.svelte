@@ -4,85 +4,120 @@
 
 <script>
 	import OverviewSection from '$lib/overviewSection.svelte';
+	import { onMount } from 'svelte';
+	import {
+		shoppingList,
+		firstFetched,
+		leftovers,
+		fullData,
+		filteredList
+	} from '../stores/shopping-list-store.js';
+
+	const customMountLeftOvers = async () => {
+		return await fetch('http://localhost:8000/' + 'sample?type=leftovers', {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: 'GET'
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				$leftovers = data;
+			});
+	};
+
+	const customMountFilteredData = async () => {
+		return await fetch('http://localhost:8000/' + 'sample?type=eco_pasta&filters=vegan,gluten', {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: 'GET'
+		})
+				.then((response) => response.json())
+				.then((data) => {
+					$filteredList = data;
+				});
+	};
+
+	const customMountShoppingList = async () => {
+		return await fetch('http://localhost:8000/' + 'sample?type=simple_pasta', {
+			headers: {
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: 'GET'
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				$shoppingList = data.filter(
+					(item) =>
+						item.product_name == 'Basil Packaging' ||
+						item.product_name == 'Aceite de oliva' ||
+						item.product_name == 'Parmigiano Reggiano'
+				);
+				$fullData = data;
+				$firstFetched = true;
+			});
+	};
+
+	onMount(() => {
+		if (!$firstFetched) {
+			customMountLeftOvers();
+			customMountShoppingList();
+			customMountFilteredData();
+		} 
+	});
+
+	const dummyRecipies = [
+		{
+			product_name: 'Spaghetti Carbonara',
+			image_url: '/src/images/Spaghetti.jpeg',
+			brands_tags: ['30 min']
+		},
+		{
+			product_name: 'Lasagne',
+			image_url: '/src/images/Lasagne.jpeg',
+			brands_tags: ['60 min']
+		}
+	];
 </script>
 
 <svelte:head>
 	<title>Home</title>
 	<meta name="description" content="ShoppingBud" />
 </svelte:head>
-<div class="flex flex-col font-medium text-dark">
-	<div class="text-xl  m-4">Welcome Nora!</div>
-	<div class="flex w-full bg-white">
-		<iframe
-			title="ShoppingBud"
-			src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2596.224708674731!2d8.679111851243265!3d49.40465607924336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4797c0df0b865475%3A0xa60b64f5dbf061a8!2sKaufland%20Heidelberg-Weststadt!5e0!3m2!1sde!2sde!4v1656073006266!5m2!1sde!2sde"
-			width="390"
-			height="300"
-			style="border:0;"
-			loading="lazy"
-			referrerpolicy="no-referrer-when-downgrade"
-		/>
-	</div>
-	<div class=" flex flex-col  justify-center m-4 h-fit">
-		You are shopping at:
-		<div
-			class="flex bg-dark rounded-lg text-white border-1 items-center justify-center w-full text-center mt-2"
-		>
-			Kaufland Heidelberg-Weststadt
+<div data-theme="cupcake" class="flex flex-col w-full font-medium  font-nunito ">
+	<div class="text-2xl  m-4  ">Welcome Nora!</div>
+	{#if $shoppingList.length > 0}
+		<a sveltekit:prefetch href="/shopping-list">
+			<div>
+				<OverviewSection
+					data={$shoppingList}
+					title="Shopping List"
+					subtitle={'There are ' + $shoppingList.length + ' items on your list'}
+				/>
+			</div>
+		</a>
+
+		<div class="divider" />
+	{/if}
+	{#if $leftovers.length > 0}
+		<div class="mt-4">
+			<OverviewSection
+				data={$leftovers}
+				title="Leftovers"
+				subtitle={'You have ' + $leftovers.length + ' items left'}
+			/>
 		</div>
-	</div>
-	<div>
-		<OverviewSection
-			data={[
-				{
-					title: 'Yoghurt',
-					image: '$images/yoghurt.jpeg',
-					brand: 'Milram'
-				},
-				{
-					title: 'Yoghurt',
-					image: '$images/yoghurt.jpeg',
-					brand: 'Milram'
-				},
-				{
-					title: 'Yoghurt',
-					image: '$images/yoghurt.jpeg',
-					brand: 'Milram'
-				},
-				{
-					title: 'Yoghurt',
-					image: '$images/yoghurt.jpeg',
-					brand: 'Milram'
-				}
-			]}
-			title="Current Shopping List"
-		/>
-	</div>
+		<div class="divider" />
+	{/if}
 	<div class="mt-4">
 		<OverviewSection
-			data={[
-				{
-					title: 'Yoghurt',
-					image: '$images/yoghurt.jpeg',
-					brand: 'Milram'
-				},
-				{
-					title: 'Yoghurt',
-					image: '$images/yoghurt.jpeg',
-					brand: 'Milram'
-				},
-				{
-					title: 'Yoghurt',
-					image: '$images/yoghurt.jpeg',
-					brand: 'Milram'
-				},
-				{
-					title: 'Yoghurt',
-					image: '$images/yoghurt.jpeg',
-					brand: 'Milram'
-				}
-			]}
-			title="Leftovers in your Stock"
+			data={dummyRecipies}
+			title="Recipe Recommendations"
+			subtitle="Based on your leftovers and shopping list"
 		/>
 	</div>
 </div>
