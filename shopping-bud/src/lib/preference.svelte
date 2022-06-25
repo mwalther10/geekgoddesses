@@ -41,7 +41,11 @@
 	<div class="collapse-content"> 
 			{#each options as option, i}
 			<div class="form-control flex justify-center items-center flex-none">
+				{#if option.value!=-1}
 				  <span class="label-text p-2">{option.label} - ({option.value} {option.unit})</span>
+				  {:else}
+				  <span class="label-text p-2">{option.label} - ({option.unit})</span>
+				  {/if}
                   <input type="range" min="{option.min}" max="{option.max}" bind:value={option.value} step="{option.steps}"  class="range range-{option.color}" />
 			  </div>
 			{/each}
