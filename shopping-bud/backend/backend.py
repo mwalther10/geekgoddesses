@@ -222,8 +222,8 @@ def sample():
             prices = [2.08, 1.49, 11.90, 1.49, 0.91, 0.49]
 
     elif type == "leftovers":
-        product_keys = ["3478822005249"]
-        prices = [2.08, 1.49, 11.90, 1.49, 0.91, 0.49]
+        product_keys = ["3478822005249", "5018374888303", "5411188112709", "20165079", "40895147"]
+        prices = [2.0, 1.59, 1.90, 1.49, 0.99]
 
     results = [openfoodfacts.products.get_product(key) for key in product_keys]
     products = extract_product_information(results, type=type)
