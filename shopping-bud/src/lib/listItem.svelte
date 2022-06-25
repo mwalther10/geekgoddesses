@@ -56,7 +56,7 @@
 
 <div>
 	<div class="flex ml-1 my-1 justify-between">
-		<div class="flex flex-col justify-center items-center w-36">
+		<div class="flex flex-col justify-center items-center w-36 border-r-2">
 			<div class="stat-figure text-secondary">
 				<div class="avatar">
 					<div class="w-16 rounded-full">
@@ -69,16 +69,23 @@
 				{item.brands_tags}
 			</div>
 		</div>
-		<div class="grid grid-cols-2 gap-y-0 gap-x-4 text-dark items-center justify-center  text-sm ">
-			<div class="">Nutriscore</div>
-			<div class="font-bold">{item.nutriscore_grade}</div>
-			<div class="flex items-center"><Icon data={eurIcon} size="8" color="dark" padding="1" /></div>
-			<div class="font-bold">
-				{item.price}
+		<div class="flex flex-col text-dark items-center justify-around  text-lg ">
+			<div class="flex justify-center items-center">
+				<div class="pr-1">Nutriscore</div>
+				<div class="font-bold">{item.nutriscore_grade}</div>
+			</div>
+			<div class="flex justify-center items-center">
+				<div class="flex items-center">
+					<Icon data={eurIcon} size="6" color="dark" padding="1" />
+				</div>
+				<div class="font-bold">
+					{item.price}
+				</div>
 			</div>
 		</div>
-
-		<PieChart macros={[item.carbohydrates_100g, item.fat_100g, item.protein_100g]} />
+		<div class="flex justify-center items-center">
+			<PieChart macros={[item.carbohydrates_100g, item.fat_100g, item.protein_100g]} />
+		</div>
 	</div>
 	<div class="divider" />
 </div>
