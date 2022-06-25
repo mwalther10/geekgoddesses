@@ -27,7 +27,7 @@
 		<Location />
 	{/if}
 	{#if $locationSelected}
-	<Stats />
+	<Stats data={$shoppingList} />
 		<div class=" m-4 text-dark flex items-center " on:click ={() => (setLocation() )}>
 			<Icon
 				data={locationIcon}
