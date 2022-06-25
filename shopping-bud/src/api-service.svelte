@@ -4,7 +4,7 @@
 
 
 	export async function getShoppingList(snapshot_id) {
-		return await fetch((API_URL + 'snapshots/?snapshot_id=' + snapshot_id) as string, {
+		return await fetch((API_URL + 'snapshots/?snapshot_id=' + snapshot_id), {
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json'
