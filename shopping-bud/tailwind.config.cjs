@@ -2,7 +2,7 @@
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   daisyui: {
-    themes: ["light", "dark", "retro","lemonade","night","pastel"],
+    themes: ["light", "dark", "retro","lemonade","night","pastel","cupcake"],
   },
   theme: {
     fontFamily: {

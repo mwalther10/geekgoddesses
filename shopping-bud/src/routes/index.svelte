@@ -10,7 +10,7 @@
 	<title>Home</title>
 	<meta name="description" content="ShoppingBud" />
 </svelte:head>
-<div data-theme="pastel" class="flex flex-col font-medium  font-nunito ">
+<div data-theme="cupcake" class="flex flex-col font-medium  font-nunito ">
 	<div class="text-xl  m-3 ">Welcome Nora!</div>
 
 	<div class="card w-96 bg-base-100 shadow-xl">
