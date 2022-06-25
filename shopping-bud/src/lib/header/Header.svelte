@@ -9,10 +9,10 @@
 	import settingIcon from '../phosphoricons/gear-fill.svg?raw';
 </script>
 
-<header data-theme="lemonade">
+<header data-theme="pastel">
 	<link href="https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap" rel="stylesheet">
 
-	<div class="navbar bg-base-100 border-b-2 border-dark">
+	<div class="navbar border-b-2 border-dark  bg-neutral text-neutral-content ">
 		<div class="flex-1">
 			<picture class="flex items-center w-20">
 				<img src="logo6.svg" alt="logo" />
@@ -24,7 +24,7 @@
 				<a sveltekit:prefetch href="/"
 					><Icon
 						data={locationIcon}
-						color={$page.url.pathname === '/' ? 'red' : 'fill-blue'}
+						color={$page.url.pathname === '/' ? 'light-blue' : 'pink'}
 						size="10"
 						padding="1"
 						additionalStyle="cursor-pointer"
@@ -36,7 +36,7 @@
 				<a sveltekit:prefetch href="/filters"
 					><Icon
 						data={funnelIcon}
-						color={$page.url.pathname === '/filters' ? 'red' : 'fill-blue'}
+						color={$page.url.pathname === '/filters' ? 'light-blue' : 'pink'}
 						size="10"
 						padding="1"
 						additionalStyle="cursor-pointer"

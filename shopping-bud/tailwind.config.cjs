@@ -1,7 +1,8 @@
+
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   daisyui: {
-    themes: ["light", "dark", "retro","lemonade","night"],
+    themes: ["light", "dark", "retro","lemonade","night","pastel"],
   },
   theme: {
     fontFamily: {
@@ -17,9 +18,10 @@ module.exports = {
         "dark": "#2C3763",
         "white": "#FEFFFE",
         "dark-grey": '#596475',
-        "light-grey": "#DCE0E5"
-      },
-      
+        "light-grey": "#DCE0E5",
+        "pink":"#D0C1D6",
+        "light-blue":"#4591b4"
+      }
     }
   },
   plugins: [ require("@tailwindcss/typography"),require("daisyui")]

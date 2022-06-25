@@ -10,7 +10,7 @@
 	<title>Home</title>
 	<meta name="description" content="ShoppingBud" />
 </svelte:head>
-<div  class="flex flex-col font-medium text-dark font-nunito ">
+<div data-theme="pastel" class="flex flex-col font-medium  font-nunito ">
 	<div class="text-xl  m-3 ">Welcome Nora!</div>
 
 	<div class="card w-96 bg-base-100 shadow-xl">
@@ -31,7 +31,7 @@
 	<h6 class="  text-sm justify-center m-2 h-fit">
 		  
 		You are shopping at:
-		<div class="badge badge-base bg-dark">
+		<div class="badge badge-primary ">
 			<div>
 			  <span>Kaufland Heidelberg-Weststadt</span>
 			</div>
