@@ -9,8 +9,7 @@ CORS(app)
 
 def extract_product_information(results, type):
     products = []
-    keys = ["_id", "product_name", "image_url", "allergens_tags", "labels_tags", "packaging_tags",
-            "stores_tags", "brands_tags", "nutriscore_grade", "categories_tags"]
+    keys = ["_id", "product_name", "image_url", "allergens_tags", "labels_tags", "packaging_tags", "categories_tags"]
     if "products" in results:
         results = results["products"]
     else:
@@ -22,6 +21,18 @@ def extract_product_information(results, type):
                 product[key] = result[key]
             except KeyError:
                 product[key] = -1
+        try:
+            product["nutriscore_grade"] = result["nutriscore_grade"]
+        except KeyError:
+            product["nutriscore_grade"] = "b"
+        try:
+            product["stores_tags"] = result["stores_tags"] if len(result["stores_tags"]) else ["Kaufland"]
+        except KeyError:
+            product["stores_tags"] = ["Kaufland"]
+        try:
+            product["brands_tags"] = result["brands_tags"] if len(result["brands_tags"]) else ["Kaufland"]
+        except KeyError:
+            product["brands_tags"] = ["Kaufland"]
         try:
             product["energy-kcal_100g"] = result["nutriments"]["energy-kcal_100g"]
         except KeyError:
@@ -37,7 +48,7 @@ def extract_product_information(results, type):
             product["EF_single_score"] = result["ecoscore_extended_data"]["impact"]["likeliest_impacts"][
                 "EF_single_score"]
         except KeyError:
-            if type=="eco_pasta":
+            if type == "eco_pasta":
                 product["EF_single_score"] = np.random.uniform(0.0, 0.05, 1)[0]
             else:
                 product["EF_single_score"] = np.random.uniform(0.03, 0.1, 1)[0]
@@ -132,10 +143,11 @@ def sample():
         product_keys = ["4864394070560", "20717452", "8424536942122", "8003566000912", "8076809529433", "10022405"]
         prices = [2.08, 1.99, 15.90, 3.49, 3.46, 0.75]
     elif type == "eco_pasta":
-        product_keys = ["4864394070560", "5057172477326", "3445020177351", "8003566001001", "3083681081022", "0011110845320"]
+        product_keys = ["4864394070560", "5057172477326", "3445020177351", "8003566001001", "3083681081022",
+                        "0011110845320"]
         prices = [2.08, 2.99, 17.90, 4.59, 4.09, 1.89]
     elif type == "nutri_pasta":
-        product_keys = ["4864394070560", "20717483", "8006830111055", "5060470140052", "3083681080971", "10022405"]
+        product_keys = ["4864394070560", "20717483", "8006830111055", "0074305066054", "3083681080971", "10022405"]
         prices = [2.08, 3.99, 19.90, 4.50, 6.35, 0.75]
     elif type == "budget_pasta":
         product_keys = ["4864394070560", "22130716", "4056489091738", "20365097", "20122591", "20164072"]
@@ -146,12 +158,12 @@ def sample():
     for i, product in enumerate(products):
         product["price"] = prices[i]
 
-
     return jsonify(products)
 
 
 if __name__ == '__main__':
     from gevent.pywsgi import WSGIServer
+
     app.debug = True
     http_server = WSGIServer(('', 8000), app)
     http_server.serve_forever()
