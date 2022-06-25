@@ -28,7 +28,7 @@
 	};
 
 	const customMountFilteredData = async () => {
-		return await fetch('http://localhost:8000/' + 'sample?type=nutri_pasta&filters=vegan,gluten', {
+		return await fetch('http://localhost:8000/' + 'sample?type=eco_pasta&filters=vegan,gluten', {
 			headers: {
 				Accept: 'application/json',
 				'Content-Type': 'application/json'
