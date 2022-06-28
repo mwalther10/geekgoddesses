@@ -24,7 +24,7 @@ The web-application is meant to prototype an app for smartphones and mobile devi
 
 ## shopping bud backend
 
-The backend consists of a Flask API querying data from the [**Open Food Facts API**](https://de.openfoodfacts.org/). We decided to enrich the data which was given from the challenge setters to better match our business case. We think that the same type of data is also available within the infrastructure of Schwartz IT.
+The backend consists of a Flask API querying data from the [**Open Food Facts API**](https://de.openfoodfacts.org/). We decided to enrich the data which was given from the challenge setters to better match our business case. We think that the same type of data is also available within the infrastructure of Schwarz IT.
 
 Requirements:
 - [Flask](https://pypi.org/project/Flask/)
@@ -33,7 +33,7 @@ Requirements:
 - [gevent](https://pypi.org/project/gevent/)
 - python 3.9
 
-All requirement can be install with PyPI.
+All requirement can be installed with PyPI.
 
 How to start the backend:
 ```
